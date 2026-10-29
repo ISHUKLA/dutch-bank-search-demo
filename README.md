@@ -3,14 +3,14 @@
 A laptop prototype over original, fictional Dutch bank help pages.
 Python 3.10+, Docker, and local models; no paid cloud services.
 
-## Current step: Java client
+## Current step: final assembly
 
 The repository now retrieves the fictional corpus through BM25, E5 vector search, hybrid
 reciprocal-rank fusion (RRF), and an auditable private/business audience adjustment. It also
 evaluates all four methods and turns the saved metrics into a portable Product Owner HTML report.
 Every push also runs the offline test suite and a real relevance-regression check. A Java 11+
-client mirrors the Elasticsearch hybrid request using only the JDK. Generation and monitoring are
-planned for later steps.
+client mirrors the Elasticsearch hybrid request using only the JDK. The notebook and timed demo
+script assemble the full interview walkthrough. Source-grounded answer generation is a future extension.
 
 The committed enrichment cache now supplies deterministic two-sentence summaries and controlled
 metadata for all pages. See [the enrichment guide](docs/enrichment.md).
@@ -23,21 +23,24 @@ See [the dashboard guide](docs/dashboard.md) to create the standalone Product Ow
 See [the model card](docs/model_card.md) for governance, privacy, risks, and monitoring controls.
 See [the CI guide](docs/ci.md) for the offline test and relevance gate.
 See [the Java example](java/README.md) for the dependency-free Elasticsearch client.
+See [the timed demo script](docs/demo_script.md) for the 15-minute interview flow and hard questions.
 
-## Quick start
+## Setup in 3 commands
 
 Use Python 3.11 for the broadest laptop compatibility. On Intel Macs, use Python 3.10–3.12;
 the PyTorch wheels needed by this stack are unavailable for Python 3.13 on that platform.
 
-```bash
-git clone https://github.com/ISHUKLA/dutch-bank-search-demo.git
-cd dutch-bank-search-demo
-python3.11 -m venv .venv
-source .venv/bin/activate
-python -m pip install -r requirements.txt -e .
-USE_OFFLINE=true python scripts/check_setup.py
-python -m pytest -q
-```
+~~~bash
+git clone https://github.com/ISHUKLA/dutch-bank-search-demo.git && cd dutch-bank-search-demo
+~~~
+
+~~~bash
+python3.11 -m venv .venv && source .venv/bin/activate
+~~~
+
+~~~bash
+python -m pip install -r requirements.txt -e . && USE_OFFLINE=true python scripts/check_setup.py
+~~~
 
 Expected checker output:
 
@@ -87,27 +90,16 @@ Run `USE_OFFLINE=true python src/search.py --personalisation-demo` for the segme
 ## Layout
 
 ```text
-data/                     Fictional Dutch pages, queries, and relevance labels
-src/config.py             Environment settings and USE_OFFLINE
-src/bank_search/           Python package and E5 embedding constants
-scripts/check_setup.py    Version, licence, and connection check
-notebooks/                Future exploration and evaluation walkthroughs
-tests/                    Automated setup and CLI checks
-docs/                     Setup guide and architecture plan
-docs/indexing.md          Elasticsearch and offline indexing guide
-docs/search.md            BM25, vector, RRF, fallback, and explain guide
-docs/personalisation.md   Explicit audience boost and comparison demo
-docs/evaluation.md        Offline metrics, query-type split, and ES rank-eval comparison
-results/metrics.json      Saved metric report after an evaluation run
-results/report.html       Self-contained Product Owner dashboard
-docs/dashboard.md         Product Owner dashboard guide
-docs/model_card.md        Governance, privacy, risks, and monitoring plan
-docs/ci.md                Offline CI and relevance-regression guard
+data/                     Fictional Dutch help pages, labels, and enrichment cache
+src/                      Enrichment, indexing, search, metrics, evaluation, and report code
+notebooks/walkthrough.ipynb  Fast, ordered interview walkthrough
+results/                  Saved benchmark JSON and standalone Product Owner report
+docs/                     Setup, architecture, governance, CI, and demo script
+tests/                    Unit, retrieval, relevance-regression, and report tests
 java/                     Dependency-free Java 11+ RRF client and read-aloud guide
-.github/workflows/        Continuous integration
+.github/workflows/        Offline pytest and Java compilation on every push
 compose.yaml              Optional single-node Elasticsearch with a trial licence
-requirements.txt          Pinned direct dependencies and Intel Mac compatibility
-pyproject.toml            Lightweight package installation
+requirements.txt          Pinned runtime and test dependencies
 ```
 
 ## Working agreements
@@ -121,6 +113,15 @@ pyproject.toml            Lightweight package installation
 - Add only the requested step, with complete and readable files.
 
 See [the architecture plan](docs/architecture.md) for the remaining features.
+
+## Next 3 sprints
+
+1. **Grounded answers:** add a small local answer generator that cites retrieved pages, refuses
+   unsupported claims, and is tested against prompt injection.
+2. **Operational dashboard:** add a lightweight interactive view for latency, empty results,
+   fallback use, freshness, and human feedback—without storing raw queries by default.
+3. **Content quality loop:** expand judged queries, run live Elasticsearch rank evaluation,
+   add content-owner review dates, and assess search quality separately for explicit segments.
 
 ## Interview talking points
 

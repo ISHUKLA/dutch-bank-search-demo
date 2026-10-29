@@ -15,19 +15,20 @@
 The backend flag selects the implemented search backend. The Elasticsearch hybrid request uses
 the RRF retriever; if the node does not support it, the client computes the same RRF formula.
 
-## Planned pipeline
+## End-to-end flow
 
-1. Create original fictional Dutch help pages and separate Dutch evaluation queries.
-2. Enrich pages with two-sentence summaries and structured metadata, then validate fields and source IDs.
-3. Encode pages with `passage: ` using `intfloat/multilingual-e5-small` (384 dimensions), then
-   store normalized vectors with the title and summary. Query encoding follows in the search step.
-4. Retrieve lexical and vector candidates through one of two interchangeable backends:
-   Elasticsearch BM25 plus vector search, or `rank_bm25` plus NumPy cosine similarity.
-5. Fuse the two ranked lists with Elasticsearch RRF or the equivalent shared Python reciprocal rank fusion (RRF).
-6. Apply a transparent segment adjustment chosen explicitly by the demo user. Exact audience
-   matches receive the configured weight; shared-audience pages receive half.
-7. Generate a local LLM answer grounded in retrieved pages, showing sources and handling missing evidence.
-8. Display results, scores, timings, segment controls, and evaluation results in a small Python dashboard.
+~~~mermaid
+flowchart LR
+    A[Fictional Dutch help content] --> B[LLM enrichment<br/>summary and controlled metadata]
+    B --> C[Index<br/>Dutch BM25 + E5 vectors]
+    C --> D[Hybrid search<br/>BM25 + kNN + RRF]
+    D --> E[Evaluation<br/>RR, AP, nDCG, Recall]
+    E --> F[Monitoring<br/>quality, latency, freshness, fairness]
+~~~
+
+The optional private/business adjustment happens after hybrid retrieval and is included in the
+evaluation and monitoring slices. A future extension may add local, source-grounded answer
+generation; it is intentionally outside this retrieval-first prototype.
 
 Keep RRF, segment logic, evaluation, and summarisation shared across backends.
 Each Elasticsearch feature must have an offline equivalent before it is added to the demo.
