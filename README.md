@@ -18,6 +18,7 @@ See [the search guide](docs/search.md) to compare lexical, vector, and hybrid re
 See [the personalisation guide](docs/personalisation.md) to compare private and business rankings.
 See [the evaluation guide](docs/evaluation.md) to reproduce the metrics and Elasticsearch comparison.
 See [the dashboard guide](docs/dashboard.md) to create the standalone Product Owner report.
+See [the model card](docs/model_card.md) for governance, privacy, risks, and monitoring controls.
 
 ## Quick start
 
@@ -96,6 +97,7 @@ docs/evaluation.md        Offline metrics, query-type split, and ES rank-eval co
 results/metrics.json      Saved metric report after an evaluation run
 results/report.html       Self-contained Product Owner dashboard
 docs/dashboard.md         Product Owner dashboard guide
+docs/model_card.md        Governance, privacy, risks, and monitoring plan
 java/                     Future small Java client example
 .github/workflows/        Continuous integration
 compose.yaml              Optional single-node Elasticsearch with a trial licence
