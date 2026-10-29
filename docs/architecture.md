@@ -6,7 +6,7 @@
 - Shared environment settings in `src/config.py`, including `USE_OFFLINE`.
 - An optional local Elasticsearch trial container and a version/licence checker.
 - CI setup tests, plus a real Elasticsearch connection check.
-- BM25, E5 vector search, and hybrid RRF with Elasticsearch and pure-Python paths.
+- BM25, E5 vector search, hybrid RRF, and explicit audience-based reranking with Elasticsearch and pure-Python paths.
 
 The backend flag selects the implemented search backend. The Elasticsearch hybrid request uses
 the RRF retriever; if the node does not support it, the client computes the same RRF formula.
@@ -20,7 +20,8 @@ the RRF retriever; if the node does not support it, the client computes the same
 4. Retrieve lexical and vector candidates through one of two interchangeable backends:
    Elasticsearch BM25 plus vector search, or `rank_bm25` plus NumPy cosine similarity.
 5. Fuse the two ranked lists with Elasticsearch RRF or the equivalent shared Python reciprocal rank fusion (RRF).
-6. Apply a transparent segment adjustment chosen explicitly by the demo user.
+6. Apply a transparent segment adjustment chosen explicitly by the demo user. Exact audience
+   matches receive the configured weight; shared-audience pages receive half.
 7. Generate a local LLM answer grounded in retrieved pages, showing sources and handling missing evidence.
 8. Display results, scores, timings, segment controls, and evaluation results in a small Python dashboard.
 

@@ -18,9 +18,9 @@ SPEC.loader.exec_module(search)
 
 def offline_fixture():
     documents = [
-        {"id": "p01", "title": "Betaalpas kwijt", "body": "Blokkeer een verloren betaalpas.", "summary": "Pas kwijt melden. Nieuwe pas aanvragen."},
-        {"id": "p02", "title": "Creditcard limiet", "body": "Pas de limiet van je creditcard aan.", "summary": "Creditcard limiet wijzigen. Controleer de kaart."},
-        {"id": "p03", "title": "Contact opnemen", "body": "Bel de kaartservice bij fraude.", "summary": "Gebruik officiële contactgegevens. Meld fraude snel."},
+        {"id": "p01", "title": "Betaalpas kwijt", "body": "Blokkeer een verloren betaalpas.", "summary": "Pas kwijt melden. Nieuwe pas aanvragen.", "audience": "both"},
+        {"id": "p02", "title": "Creditcard limiet", "body": "Pas de limiet van je creditcard aan.", "summary": "Creditcard limiet wijzigen. Controleer de kaart.", "audience": "private"},
+        {"id": "p03", "title": "Contact opnemen", "body": "Bel de kaartservice bij fraude.", "summary": "Gebruik officiële contactgegevens. Meld fraude snel.", "audience": "business"},
     ]
     vectors = np.zeros((3, 384), dtype=np.float32)
     vectors[0, 0] = 1.0
@@ -65,10 +65,60 @@ def test_query_embeddings_use_the_e5_query_prefix():
 
 
 def test_client_rrf_combines_ranked_lists():
-    first = [{"id": "p01", "title": "A", "summary": "", "score": 4.0, "method": "bm25"}]
-    second = [{"id": "p02", "title": "B", "summary": "", "score": 0.9, "method": "vector"}, first[0]]
+    first = [{"id": "p01", "title": "A", "summary": "", "audience": "both", "score": 4.0, "method": "bm25"}]
+    second = [{"id": "p02", "title": "B", "summary": "", "audience": "both", "score": 0.9, "method": "vector"}, first[0]]
     results = search._rrf([first, second], k=2, rank_constant=1)
     assert [result["id"] for result in results] == ["p01", "p02"]
+
+
+def test_segment_boost_prefers_exact_audience_then_shared_audience(monkeypatch):
+    monkeypatch.setattr(search.config, "SEGMENT_BOOST_WEIGHT", 0.01)
+    results = [
+        {"id": "p01", "title": "Shared", "summary": "", "audience": "both", "score": 0.020, "method": "hybrid"},
+        {"id": "p02", "title": "Private", "summary": "", "audience": "private", "score": 0.017, "method": "hybrid"},
+        {"id": "p03", "title": "Business", "summary": "", "audience": "business", "score": 0.019, "method": "hybrid"},
+    ]
+    private = search.apply_segment_boost(results, "private", k=3)
+    business = search.apply_segment_boost(results, "business", k=3)
+    assert [result["id"] for result in private] == ["p02", "p01", "p03"]
+    assert [result["id"] for result in business] == ["p03", "p01", "p02"]
+    assert private[0]["base_score"] == 0.017
+    assert private[0]["segment_boost"] == 0.01
+
+
+def test_invalid_segment_is_rejected():
+    with pytest.raises(ValueError, match="segment must be"):
+        search.apply_segment_boost([], "student", k=5)
+
+
+def test_hybrid_search_fetches_a_reranking_window_for_a_segment(monkeypatch):
+    captured = {}
+    candidates = [
+        {"id": "p01", "title": "Shared", "summary": "", "audience": "both", "score": 0.020, "method": "hybrid_es_rrf"},
+        {"id": "p02", "title": "Private", "summary": "", "audience": "private", "score": 0.017, "method": "hybrid_es_rrf"},
+    ]
+
+    def fake_rrf(query, k, client, embedder):
+        captured["k"] = k
+        return candidates
+
+    monkeypatch.setattr(search, "_elasticsearch_rrf_search", fake_rrf)
+    results = search.hybrid_search("rekening openen", k=1, client=object(), segment="private")
+    assert captured["k"] == search.RRF_RANK_WINDOW_SIZE
+    assert results[0]["id"] == "p02"
+
+
+def test_personalisation_demo_prints_private_and_business_columns(monkeypatch, capsys):
+    private = [{"id": "p11", "title": "Privé", "summary": "", "audience": "private", "segment_boost": 0.01}]
+    business = [{"id": "p12", "title": "Zakelijk", "summary": "", "audience": "business", "segment_boost": 0.01}]
+    monkeypatch.setattr(search, "hybrid_search", lambda query, k, **kwargs: private if kwargs["segment"] == "private" else business)
+    search.personalisation_demo("rekening openen")
+    output = capsys.readouterr().out
+    assert "Query: rekening openen" in output
+    assert "Private user" in output
+    assert "Business user" in output
+    assert "p11" in output
+    assert "p12" in output
 
 
 def test_es_rrf_payload_contains_standard_and_knn_retrievers(monkeypatch):
@@ -91,7 +141,7 @@ def test_es_rrf_payload_contains_standard_and_knn_retrievers(monkeypatch):
 def test_rrf_unavailable_uses_client_fallback(monkeypatch):
     monkeypatch.setattr(search, "_elasticsearch_rrf_search", lambda *args: (_ for _ in ()).throw(search.RrfRetrieverUnavailable()))
     monkeypatch.setattr(search, "_rrf_is_unavailable", lambda error: isinstance(error, search.RrfRetrieverUnavailable))
-    expected = [{"id": "p01", "title": "A", "summary": "", "score": 0.1, "method": "hybrid_client_rrf"}]
+    expected = [{"id": "p01", "title": "A", "summary": "", "audience": "both", "score": 0.1, "method": "hybrid_client_rrf"}]
     monkeypatch.setattr(search, "hybrid_client_rrf", lambda *args, **kwargs: expected)
     assert search.hybrid_search("pas kwijt", client=object()) == expected
 

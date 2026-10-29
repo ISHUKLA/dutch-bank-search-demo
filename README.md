@@ -3,17 +3,18 @@
 A laptop prototype over original, fictional Dutch bank help pages.
 Python 3.10+, Docker, and local models; no paid cloud services.
 
-## Current step: search
+## Current step: personalisation
 
 The repository now retrieves the fictional corpus through BM25, E5 vector search, and hybrid
-reciprocal-rank fusion (RRF), in Elasticsearch or a pure-Python offline fallback. Generation,
-personalisation, evaluation, the dashboard, monitoring, and the Java example are planned for later steps.
+reciprocal-rank fusion (RRF), then applies an auditable private/business audience adjustment.
+Generation, evaluation, the dashboard, monitoring, and the Java example are planned for later steps.
 
 The committed enrichment cache now supplies deterministic two-sentence summaries and controlled
 metadata for all pages. See [the enrichment guide](docs/enrichment.md).
 
 See [the indexing guide](docs/indexing.md) to build the Dutch BM25 and vector indexes.
 See [the search guide](docs/search.md) to compare lexical, vector, and hybrid results.
+See [the personalisation guide](docs/personalisation.md) to compare private and business rankings.
 
 ## Quick start
 
@@ -73,6 +74,7 @@ credential configuration, expected output, and troubleshooting.
 The default is `true`. This replaces the initial scaffold's `--backend` argument.
 Both the setup checker and search script read the same `src/config.py` settings. Run
 `USE_OFFLINE=true python src/search.py --query "pas kwijt"` for the portable demo.
+Run `USE_OFFLINE=true python src/search.py --personalisation-demo` for the segment comparison.
 
 ## Layout
 
@@ -86,6 +88,7 @@ tests/                    Automated setup and CLI checks
 docs/                     Setup guide and architecture plan
 docs/indexing.md          Elasticsearch and offline indexing guide
 docs/search.md            BM25, vector, RRF, fallback, and explain guide
+docs/personalisation.md   Explicit audience boost and comparison demo
 java/                     Future small Java client example
 .github/workflows/        Continuous integration
 compose.yaml              Optional single-node Elasticsearch with a trial licence
