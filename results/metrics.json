@@ -10,24 +10,28 @@
         "ndcg_at_10": 0.7018227237650239,
         "recall_at_10": 0.6733333333333333
       },
+      "best_page_top_3_rate": 0.76,
       "by_query_type": {
         "informational": {
           "reciprocal_rank": 0.890625,
           "average_precision": 0.6802662037037036,
           "ndcg_at_10": 0.7787299353349206,
-          "recall_at_10": 0.84375
+          "recall_at_10": 0.84375,
+          "best_page_top_3_rate": 0.625
         },
         "navigational": {
           "reciprocal_rank": 0.6,
           "average_precision": 0.19999999999999998,
           "ndcg_at_10": 0.4099383200968725,
-          "recall_at_10": 0.3333333333333333
+          "recall_at_10": 0.3333333333333333,
+          "best_page_top_3_rate": 0.5
         },
         "transactional": {
           "reciprocal_rank": 0.8833333333333333,
           "average_precision": 0.5375396825396825,
           "ndcg_at_10": 0.6997234647501656,
-          "recall_at_10": 0.6277777777777779
+          "recall_at_10": 0.6277777777777779,
+          "best_page_top_3_rate": 0.8666666666666667
         }
       },
       "per_query": [
@@ -48,6 +52,7 @@
             "p29",
             "p07"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.5,
           "ndcg_at_10": 0.6992594192834368,
@@ -70,6 +75,7 @@
             "p11",
             "p21"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.6666666666666666,
           "ndcg_at_10": 0.8856960808962038,
@@ -92,6 +98,7 @@
             "p09",
             "p10"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 1.0,
           "ndcg_at_10": 1.0,
@@ -114,6 +121,7 @@
             "p40",
             "p12"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.6666666666666666,
           "ndcg_at_10": 0.894999002123018,
@@ -136,6 +144,7 @@
             "p09",
             "p10"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.6875,
           "ndcg_at_10": 0.640046747301565,
@@ -158,6 +167,7 @@
             "p17",
             "p22"
           ],
+          "best_page_in_top_3": false,
           "reciprocal_rank": 1.0,
           "average_precision": 0.8041666666666667,
           "ndcg_at_10": 0.7943579954602509,
@@ -180,6 +190,7 @@
             "p03",
             "p22"
           ],
+          "best_page_in_top_3": false,
           "reciprocal_rank": 0.25,
           "average_precision": 0.08333333333333333,
           "ndcg_at_10": 0.3127697035039474,
@@ -202,6 +213,7 @@
             "p08",
             "p09"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.3333333333333333,
           "ndcg_at_10": 0.7262287617954056,
@@ -224,6 +236,7 @@
             "p08",
             "p06"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 1.0,
           "ndcg_at_10": 1.0,
@@ -246,6 +259,7 @@
             "p13",
             "p20"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.3333333333333333,
           "ndcg_at_10": 0.7262287617954056,
@@ -268,6 +282,7 @@
             "p16",
             "p14"
           ],
+          "best_page_in_top_3": false,
           "reciprocal_rank": 0.125,
           "average_precision": 0.11574074074074074,
           "ndcg_at_10": 0.30197188052948315,
@@ -290,6 +305,7 @@
             "p20",
             "p12"
           ],
+          "best_page_in_top_3": false,
           "reciprocal_rank": 0.0,
           "average_precision": 0.0,
           "ndcg_at_10": 0.0,
@@ -312,6 +328,7 @@
             "p09",
             "p10"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 1.0,
           "ndcg_at_10": 1.0,
@@ -334,6 +351,7 @@
             "p09",
             "p11"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.8666666666666667,
           "ndcg_at_10": 0.7939234660462212,
@@ -356,6 +374,7 @@
             "p16",
             "p04"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.6666666666666666,
           "ndcg_at_10": 0.894999002123018,
@@ -378,6 +397,7 @@
             "p09",
             "p07"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.7916666666666666,
           "ndcg_at_10": 0.9553284286534458,
@@ -400,6 +420,7 @@
             "p06",
             "p16"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.75,
           "ndcg_at_10": 0.8365093259996714,
@@ -422,6 +443,7 @@
             "p40",
             "p07"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.6666666666666666,
           "ndcg_at_10": 0.7625024946924551,
@@ -444,6 +466,7 @@
             "p32",
             "p37"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.3333333333333333,
           "ndcg_at_10": 0.6300059872618923,
@@ -466,6 +489,7 @@
             "p05",
             "p04"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.3964285714285714,
           "ndcg_at_10": 0.6976163697575245,
@@ -488,6 +512,7 @@
             "p36",
             "p08"
           ],
+          "best_page_in_top_3": false,
           "reciprocal_rank": 0.2,
           "average_precision": 0.06666666666666667,
           "ndcg_at_10": 0.09364787839833931,
@@ -510,6 +535,7 @@
             "p09",
             "p10"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.25,
           "ndcg_at_10": 0.527005883780203,
@@ -532,6 +558,7 @@
             "p16",
             "p14"
           ],
+          "best_page_in_top_3": false,
           "reciprocal_rank": 1.0,
           "average_precision": 0.5666666666666667,
           "ndcg_at_10": 0.6086733692377279,
@@ -554,6 +581,7 @@
             "p19",
             "p02"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.6041666666666666,
           "ndcg_at_10": 0.8228827683267327,
@@ -576,6 +604,7 @@
             "p29",
             "p11"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.7555555555555555,
           "ndcg_at_10": 0.940914767159646,
@@ -590,24 +619,28 @@
         "ndcg_at_10": 0.7988908664148185,
         "recall_at_10": 0.8166666666666668
       },
+      "best_page_top_3_rate": 0.96,
       "by_query_type": {
         "informational": {
           "reciprocal_rank": 0.9375,
           "average_precision": 0.696875,
           "ndcg_at_10": 0.8460599363959251,
-          "recall_at_10": 0.84375
+          "recall_at_10": 0.84375,
+          "best_page_top_3_rate": 1.0
         },
         "navigational": {
           "reciprocal_rank": 0.625,
           "average_precision": 0.27499999999999997,
           "ndcg_at_10": 0.5663231718488462,
-          "recall_at_10": 0.5
+          "recall_at_10": 0.5,
+          "best_page_top_3_rate": 0.5
         },
         "transactional": {
           "reciprocal_rank": 0.9333333333333333,
           "average_precision": 0.5980423280423282,
           "ndcg_at_10": 0.8047430550336915,
-          "recall_at_10": 0.8444444444444446
+          "recall_at_10": 0.8444444444444446,
+          "best_page_top_3_rate": 1.0
         }
       },
       "per_query": [
@@ -628,6 +661,7 @@
             "p05",
             "p18"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.375,
           "ndcg_at_10": 0.660693833414998,
@@ -650,6 +684,7 @@
             "p10",
             "p04"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.8095238095238094,
           "ndcg_at_10": 0.9025038251950979,
@@ -672,6 +707,7 @@
             "p16",
             "p26"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 1.0,
           "ndcg_at_10": 1.0,
@@ -694,6 +730,7 @@
             "p02",
             "p10"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.8333333333333334,
           "ndcg_at_10": 0.9698032223176083,
@@ -716,6 +753,7 @@
             "p04",
             "p29"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.75,
           "ndcg_at_10": 0.7955514803726979,
@@ -738,6 +776,7 @@
             "p05",
             "p32"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.75,
           "ndcg_at_10": 0.813509075834988,
@@ -760,6 +799,7 @@
             "p38",
             "p08"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.6333333333333333,
           "ndcg_at_10": 0.9061059416724394,
@@ -782,6 +822,7 @@
             "p17",
             "p01"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.4666666666666666,
           "ndcg_at_10": 0.819876640193745,
@@ -804,6 +845,7 @@
             "p01",
             "p33"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.625,
           "ndcg_at_10": 0.91311732856428,
@@ -826,6 +868,7 @@
             "p14",
             "p04"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.7222222222222222,
           "ndcg_at_10": 0.9334961902400011,
@@ -848,6 +891,7 @@
             "p11",
             "p03"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.8055555555555555,
           "ndcg_at_10": 0.9515234565959557,
@@ -870,6 +914,7 @@
             "p11",
             "p26"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 0.5,
           "average_precision": 0.25,
           "ndcg_at_10": 0.5345658893354267,
@@ -892,6 +937,7 @@
             "p17",
             "p08"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 1.0,
           "ndcg_at_10": 1.0,
@@ -914,6 +960,7 @@
             "p03",
             "p18"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.3333333333333333,
           "ndcg_at_10": 0.7262287617954056,
@@ -936,6 +983,7 @@
             "p12",
             "p14"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.8666666666666667,
           "ndcg_at_10": 0.8987333753818939,
@@ -958,6 +1006,7 @@
             "p09",
             "p11"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.6333333333333333,
           "ndcg_at_10": 0.9061059416724394,
@@ -980,6 +1029,7 @@
             "p07",
             "p06"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.75,
           "ndcg_at_10": 0.8365093259996714,
@@ -1002,6 +1052,7 @@
             "p27",
             "p25"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.5555555555555555,
           "ndcg_at_10": 0.842831327522316,
@@ -1024,6 +1075,7 @@
             "p07",
             "p28"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 0.5,
           "average_precision": 0.5,
           "ndcg_at_10": 0.6375408994007297,
@@ -1046,6 +1098,7 @@
             "p07",
             "p04"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.3,
           "ndcg_at_10": 0.6334216623646837,
@@ -1068,6 +1121,7 @@
             "p26",
             "p11"
           ],
+          "best_page_in_top_3": false,
           "reciprocal_rank": 0.25,
           "average_precision": 0.08333333333333333,
           "ndcg_at_10": 0.3127697035039474,
@@ -1090,6 +1144,7 @@
             "p01",
             "p09"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.5416666666666666,
           "ndcg_at_10": 0.7652489395238451,
@@ -1112,6 +1167,7 @@
             "p14",
             "p35"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 0.5,
           "average_precision": 0.5416666666666666,
           "ndcg_at_10": 0.5962235359674497,
@@ -1134,6 +1190,7 @@
             "p37",
             "p01"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.525,
           "ndcg_at_10": 0.8034532402267444,
@@ -1156,6 +1213,7 @@
             "p01",
             "p27"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.4444444444444444,
           "ndcg_at_10": 0.8124580632741002,
@@ -1170,24 +1228,28 @@
         "ndcg_at_10": 0.7969855340266548,
         "recall_at_10": 0.8199999999999998
       },
+      "best_page_top_3_rate": 0.96,
       "by_query_type": {
         "informational": {
           "reciprocal_rank": 0.9375,
           "average_precision": 0.7510416666666667,
           "ndcg_at_10": 0.881886159144335,
-          "recall_at_10": 0.9166666666666666
+          "recall_at_10": 0.9166666666666666,
+          "best_page_top_3_rate": 1.0
         },
         "navigational": {
           "reciprocal_rank": 0.5833333333333334,
           "average_precision": 0.22777777777777777,
           "ndcg_at_10": 0.5111926270847719,
-          "recall_at_10": 0.5
+          "recall_at_10": 0.5,
+          "best_page_top_3_rate": 0.5
         },
         "transactional": {
           "reciprocal_rank": 0.9333333333333333,
           "average_precision": 0.5994775132275134,
           "ndcg_at_10": 0.789810921556143,
-          "recall_at_10": 0.8111111111111111
+          "recall_at_10": 0.8111111111111111,
+          "best_page_top_3_rate": 1.0
         }
       },
       "per_query": [
@@ -1208,6 +1270,7 @@
             "p31",
             "p04"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.575,
           "ndcg_at_10": 0.8105980109416715,
@@ -1230,6 +1293,7 @@
             "p07",
             "p10"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.8055555555555555,
           "ndcg_at_10": 0.9158928585785953,
@@ -1252,6 +1316,7 @@
             "p05",
             "p08"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 1.0,
           "ndcg_at_10": 1.0,
@@ -1274,6 +1339,7 @@
             "p29",
             "p36"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.6666666666666666,
           "ndcg_at_10": 0.894999002123018,
@@ -1296,6 +1362,7 @@
             "p05",
             "p09"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.75,
           "ndcg_at_10": 0.7955514803726979,
@@ -1318,6 +1385,7 @@
             "p33",
             "p17"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.95,
           "ndcg_at_10": 0.8615905655846156,
@@ -1340,6 +1408,7 @@
             "p35",
             "p38"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 0.5,
           "average_precision": 0.373015873015873,
           "ndcg_at_10": 0.6117636320314571,
@@ -1362,6 +1431,7 @@
             "p18",
             "p29"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.3333333333333333,
           "ndcg_at_10": 0.7262287617954056,
@@ -1384,6 +1454,7 @@
             "p01",
             "p27"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.8333333333333333,
           "ndcg_at_10": 0.9639404333166532,
@@ -1406,6 +1477,7 @@
             "p13",
             "p35"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.4166666666666667,
           "ndcg_at_10": 0.8025953174147523,
@@ -1428,6 +1500,7 @@
             "p06",
             "p10"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.8055555555555555,
           "ndcg_at_10": 0.9515234565959557,
@@ -1450,6 +1523,7 @@
             "p13",
             "p15"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 0.5,
           "average_precision": 0.2333333333333333,
           "ndcg_at_10": 0.5281750640145612,
@@ -1472,6 +1546,7 @@
             "p12",
             "p01"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 1.0,
           "ndcg_at_10": 1.0,
@@ -1494,6 +1569,7 @@
             "p09",
             "p13"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.5,
           "ndcg_at_10": 0.8304853296300547,
@@ -1516,6 +1592,7 @@
             "p24",
             "p12"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.7777777777777778,
           "ndcg_at_10": 0.9582159019942612,
@@ -1538,6 +1615,7 @@
             "p11",
             "p37"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.8666666666666667,
           "ndcg_at_10": 0.9726097514324383,
@@ -1560,6 +1638,7 @@
             "p05",
             "p32"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.75,
           "ndcg_at_10": 0.8365093259996714,
@@ -1582,6 +1661,7 @@
             "p16",
             "p40"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.5555555555555555,
           "ndcg_at_10": 0.7350069851388743,
@@ -1604,6 +1684,7 @@
             "p17",
             "p26"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.39999999999999997,
           "ndcg_at_10": 0.6907101776909216,
@@ -1626,6 +1707,7 @@
             "p32",
             "p15"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.4270833333333333,
           "ndcg_at_10": 0.7071057413523806,
@@ -1648,6 +1730,7 @@
             "p27",
             "p31"
           ],
+          "best_page_in_top_3": false,
           "reciprocal_rank": 0.16666666666666666,
           "average_precision": 0.12222222222222223,
           "ndcg_at_10": 0.29615649237413816,
@@ -1670,6 +1753,7 @@
             "p17",
             "p10"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.3214285714285714,
           "ndcg_at_10": 0.5855620930891144,
@@ -1692,6 +1776,7 @@
             "p36",
             "p37"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 0.5,
           "average_precision": 0.5527777777777778,
           "ndcg_at_10": 0.6173602500671282,
@@ -1714,6 +1799,7 @@
             "p19",
             "p35"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.6845238095238095,
           "ndcg_at_10": 0.8911429519683571,
@@ -1736,6 +1822,7 @@
             "p15",
             "p05"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.7555555555555555,
           "ndcg_at_10": 0.940914767159646,
@@ -1750,24 +1837,28 @@
         "ndcg_at_10": 0.7448857721441962,
         "recall_at_10": 0.78
       },
+      "best_page_top_3_rate": 0.92,
       "by_query_type": {
         "informational": {
           "reciprocal_rank": 0.7916666666666667,
           "average_precision": 0.5953125,
           "ndcg_at_10": 0.7493766732116632,
-          "recall_at_10": 0.84375
+          "recall_at_10": 0.84375,
+          "best_page_top_3_rate": 1.0
         },
         "navigational": {
           "reciprocal_rank": 0.3214285714285714,
           "average_precision": 0.14047619047619048,
           "ndcg_at_10": 0.3744093046277288,
-          "recall_at_10": 0.5
+          "recall_at_10": 0.5,
+          "best_page_top_3_rate": 0.5
         },
         "transactional": {
           "reciprocal_rank": 0.95,
           "average_precision": 0.6266798941798941,
           "ndcg_at_10": 0.791887487243743,
-          "recall_at_10": 0.7833333333333333
+          "recall_at_10": 0.7833333333333333,
+          "best_page_top_3_rate": 0.9333333333333333
         }
       },
       "per_query": [
@@ -1788,6 +1879,7 @@
             "p17",
             "p22"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.5,
           "ndcg_at_10": 0.6992594192834368,
@@ -1810,6 +1902,7 @@
             "p26",
             "p07"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.7000000000000001,
           "ndcg_at_10": 0.8829286471463074,
@@ -1832,6 +1925,7 @@
             "p06",
             "p05"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 1.0,
           "ndcg_at_10": 1.0,
@@ -1854,6 +1948,7 @@
             "p29",
             "p32"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.6666666666666666,
           "ndcg_at_10": 0.894999002123018,
@@ -1876,6 +1971,7 @@
             "p17",
             "p05"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.75,
           "ndcg_at_10": 0.7955514803726979,
@@ -1898,6 +1994,7 @@
             "p33",
             "p17"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.6041666666666666,
           "ndcg_at_10": 0.7783308717438988,
@@ -1920,6 +2017,7 @@
             "p32",
             "p14"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.8055555555555555,
           "ndcg_at_10": 0.9515234565959557,
@@ -1942,6 +2040,7 @@
             "p26",
             "p18"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 0.5,
           "average_precision": 0.16666666666666666,
           "ndcg_at_10": 0.45819933371607996,
@@ -1964,6 +2063,7 @@
             "p17",
             "p03"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.8333333333333333,
           "ndcg_at_10": 0.9639404333166532,
@@ -1986,6 +2086,7 @@
             "p40",
             "p17"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.39999999999999997,
           "ndcg_at_10": 0.7962044920938869,
@@ -2008,6 +2109,7 @@
             "p06",
             "p10"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 0.5,
           "average_precision": 0.5333333333333333,
           "ndcg_at_10": 0.6561037799490683,
@@ -2030,6 +2132,7 @@
             "p17",
             "p01"
           ],
+          "best_page_in_top_3": false,
           "reciprocal_rank": 0.25,
           "average_precision": 0.08333333333333333,
           "ndcg_at_10": 0.3127697035039474,
@@ -2052,6 +2155,7 @@
             "p14",
             "p18"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 0.3333333333333333,
           "average_precision": 0.27777777777777773,
           "ndcg_at_10": 0.44876780023132046,
@@ -2074,6 +2178,7 @@
             "p24",
             "p09"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 0.5,
           "average_precision": 0.27777777777777773,
           "ndcg_at_10": 0.5444286351947745,
@@ -2096,6 +2201,7 @@
             "p21",
             "p04"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.6805555555555555,
           "ndcg_at_10": 0.9062562367311378,
@@ -2118,6 +2224,7 @@
             "p18",
             "p37"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.8333333333333334,
           "ndcg_at_10": 0.7865048891265763,
@@ -2140,6 +2247,7 @@
             "p05",
             "p32"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.75,
           "ndcg_at_10": 0.8365093259996714,
@@ -2162,6 +2270,7 @@
             "p22",
             "p03"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.5,
           "ndcg_at_10": 0.7204489239817528,
@@ -2184,6 +2293,7 @@
             "p01",
             "p33"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.3333333333333333,
           "ndcg_at_10": 0.6300059872618923,
@@ -2206,6 +2316,7 @@
             "p05",
             "p03"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.3875,
           "ndcg_at_10": 0.6941751887386189,
@@ -2228,6 +2339,7 @@
             "p27",
             "p31"
           ],
+          "best_page_in_top_3": false,
           "reciprocal_rank": 0.14285714285714285,
           "average_precision": 0.11428571428571428,
           "ndcg_at_10": 0.29061927553937766,
@@ -2250,6 +2362,7 @@
             "p09",
             "p17"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.875,
           "ndcg_at_10": 0.9243436399630386,
@@ -2272,6 +2385,7 @@
             "p14",
             "p37"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 1.0,
           "ndcg_at_10": 0.8326308694800871,
@@ -2294,6 +2408,7 @@
             "p14",
             "p19"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.6488095238095237,
           "ndcg_at_10": 0.8841467212717075,
@@ -2316,6 +2431,7 @@
             "p19",
             "p15"
           ],
+          "best_page_in_top_3": true,
           "reciprocal_rank": 1.0,
           "average_precision": 0.7222222222222222,
           "ndcg_at_10": 0.9334961902400011,

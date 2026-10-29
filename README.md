@@ -3,12 +3,12 @@
 A laptop prototype over original, fictional Dutch bank help pages.
 Python 3.10+, Docker, and local models; no paid cloud services.
 
-## Current step: evaluation
+## Current step: dashboard
 
 The repository now retrieves the fictional corpus through BM25, E5 vector search, hybrid
 reciprocal-rank fusion (RRF), and an auditable private/business audience adjustment. It also
-evaluates all four methods with RR, AP, nDCG@10, and Recall@10. Generation, the dashboard,
-monitoring, and the Java example are planned for later steps.
+evaluates all four methods and turns the saved metrics into a portable Product Owner HTML report.
+Generation, monitoring, and the Java example are planned for later steps.
 
 The committed enrichment cache now supplies deterministic two-sentence summaries and controlled
 metadata for all pages. See [the enrichment guide](docs/enrichment.md).
@@ -17,6 +17,7 @@ See [the indexing guide](docs/indexing.md) to build the Dutch BM25 and vector in
 See [the search guide](docs/search.md) to compare lexical, vector, and hybrid results.
 See [the personalisation guide](docs/personalisation.md) to compare private and business rankings.
 See [the evaluation guide](docs/evaluation.md) to reproduce the metrics and Elasticsearch comparison.
+See [the dashboard guide](docs/dashboard.md) to create the standalone Product Owner report.
 
 ## Quick start
 
@@ -93,6 +94,8 @@ docs/search.md            BM25, vector, RRF, fallback, and explain guide
 docs/personalisation.md   Explicit audience boost and comparison demo
 docs/evaluation.md        Offline metrics, query-type split, and ES rank-eval comparison
 results/metrics.json      Saved metric report after an evaluation run
+results/report.html       Self-contained Product Owner dashboard
+docs/dashboard.md         Product Owner dashboard guide
 java/                     Future small Java client example
 .github/workflows/        Continuous integration
 compose.yaml              Optional single-node Elasticsearch with a trial licence

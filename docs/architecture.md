@@ -8,6 +8,7 @@
 - CI setup tests, plus a real Elasticsearch connection check.
 - BM25, E5 vector search, hybrid RRF, and explicit audience-based reranking with Elasticsearch and pure-Python paths.
 - A 25-query benchmark with RR, AP, linear-gain nDCG@10, Recall@10, query-type slices, and hybrid failure review.
+- A self-contained Product Owner report that presents comparison data and plain-language recommendations.
 
 The backend flag selects the implemented search backend. The Elasticsearch hybrid request uses
 the RRF retriever; if the node does not support it, the client computes the same RRF formula.

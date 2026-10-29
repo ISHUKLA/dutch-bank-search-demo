@@ -85,6 +85,12 @@ def _mean(metric_rows: list[dict[str, float]]) -> dict[str, float]:
     return {metric: sum(row[metric] for row in metric_rows) / len(metric_rows) for metric in METRICS}
 
 
+def _top_three_rate(rows: list[dict[str, Any]]) -> float:
+    """Return the share of queries whose highest-graded page appears in the first three."""
+
+    return sum(row["best_page_in_top_3"] for row in rows) / len(rows)
+
+
 def evaluate_queries(
     queries: list[dict[str, Any]],
     retrievers: dict[str, Retriever],
@@ -98,6 +104,10 @@ def evaluate_queries(
         for query in queries:
             results = retrievers[method](query, k)
             scores = metrics_for_ranking(results, query["judgments"], k)
+            best_grade = max(query["judgments"].values())
+            best_ids = {
+                document_id for document_id, grade in query["judgments"].items() if grade == best_grade
+            }
             per_query.append(
                 {
                     "id": query["id"],
@@ -105,6 +115,7 @@ def evaluate_queries(
                     "type": query["type"],
                     "segment": query["segment"],
                     "ranked_ids": [result["id"] for result in results[:k]],
+                    "best_page_in_top_3": any(result["id"] in best_ids for result in results[:3]),
                     **scores,
                 }
             )
@@ -112,8 +123,16 @@ def evaluate_queries(
         by_type: dict[str, dict[str, float]] = {}
         for query_type in sorted({query["type"] for query in queries}):
             type_rows = [row for row in per_query if row["type"] == query_type]
-            by_type[query_type] = _mean(type_rows)
-        report[method] = {"mean": _mean(per_query), "by_query_type": by_type, "per_query": per_query}
+            by_type[query_type] = {
+                **_mean(type_rows),
+                "best_page_top_3_rate": _top_three_rate(type_rows),
+            }
+        report[method] = {
+            "mean": _mean(per_query),
+            "best_page_top_3_rate": _top_three_rate(per_query),
+            "by_query_type": by_type,
+            "per_query": per_query,
+        }
     return report
 
 
