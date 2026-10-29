@@ -10,6 +10,9 @@ an offline-aware connection checker, a single-node Elasticsearch trial configura
 and CI checks. Search, generation, personalisation, evaluation, the dashboard,
 monitoring, and the Java example are planned for later steps.
 
+The committed enrichment cache now supplies deterministic two-sentence summaries and controlled
+metadata for all pages. See [the enrichment guide](docs/enrichment.md).
+
 ## Quick start
 
 Use Python 3.11 for the broadest laptop compatibility. On Intel Macs, use Python 3.10–3.12;

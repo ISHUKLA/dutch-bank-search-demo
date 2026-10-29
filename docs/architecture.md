@@ -12,7 +12,7 @@ The backend flag is configuration only at this stage. Neither search backend exi
 ## Planned pipeline
 
 1. Create original fictional Dutch help pages and separate Dutch evaluation queries.
-2. Use a local LLM for summaries and structured metadata; validate fields and retain source IDs.
+2. Enrich pages with two-sentence summaries and structured metadata, then validate fields and source IDs.
 3. Encode queries with `query: ` and pages with `passage: ` using
    `intfloat/multilingual-e5-small` (384 dimensions). Normalize vectors for cosine similarity.
 4. Retrieve lexical and vector candidates through one of two interchangeable backends:
