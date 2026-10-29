@@ -52,7 +52,9 @@ def main() -> int:
         return fail("The account needs the monitor cluster privilege to read the licence.")
     except (ConnectionError, ConnectionTimeout):
         return fail("Cannot reach Elasticsearch. Start Docker and check ES_URL.")
-    except (ApiError, TransportError, ValueError, KeyError):
+    except ApiError as error:
+        return fail(f"Elasticsearch returned HTTP {error.status_code}. Check server readiness and retry.")
+    except (TransportError, ValueError, KeyError):
         # Raw exception text can contain URLs or credentials; do not print it.
         return fail("Check ES_URL and server readiness, then retry the setup check.")
 

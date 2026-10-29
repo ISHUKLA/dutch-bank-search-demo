@@ -61,7 +61,8 @@ Docker must be installed and running. Allow at least 4 GB of memory for Docker.
 docker compose up -d --wait
 ```
 
-It pins Elasticsearch 8.19.23, selects a trial licence, persists data, and waits for a healthy node.
+It pins Elasticsearch 8.19.23, selects a trial licence, persists data, and waits for both
+cluster health and the licence endpoint. The licence endpoint can become ready slightly later.
 The container has a 2 GB limit and a 512 MB heap. Authentication is disabled and port 9200
 is bound only to `127.0.0.1`; this is local development configuration for fictional data.
 
@@ -87,10 +88,11 @@ This prints a container ID before the server is ready. Wait for a successful hea
 
 ```bash
 curl --fail 'http://localhost:9200/_cluster/health?wait_for_status=yellow&timeout=60s'
+curl --fail http://localhost:9200/_license
 ```
 
-If the connection is refused during startup, retry after a few seconds.
-Success has `timed_out: false` and a `yellow` or `green` status.
+If the connection is refused or the licence endpoint returns 404 during startup, retry after a few seconds.
+Success has `timed_out: false` and a `yellow` or `green` cluster status, plus an active licence response.
 Stop with `docker stop dutch-bank-es`; restart with `docker start dutch-bank-es`.
 
 The trial lasts 30 days and enables Elasticsearch's built-in RRF retriever.

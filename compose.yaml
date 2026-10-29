@@ -15,11 +15,10 @@ services:
       - elasticsearch-data:/usr/share/elasticsearch/data
     healthcheck:
       test:
-        - CMD
-        - curl
-        - --fail
-        - --silent
-        - "http://localhost:9200/_cluster/health?wait_for_status=yellow&timeout=1s"
+        - CMD-SHELL
+        - >-
+          curl --fail --silent 'http://localhost:9200/_cluster/health?wait_for_status=yellow&timeout=1s' >/dev/null
+          && curl --fail --silent http://localhost:9200/_license >/dev/null
       interval: 10s
       timeout: 5s
       retries: 12
