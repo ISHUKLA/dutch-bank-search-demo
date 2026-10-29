@@ -13,8 +13,8 @@ The backend flag is configuration only at this stage. Neither search backend exi
 
 1. Create original fictional Dutch help pages and separate Dutch evaluation queries.
 2. Enrich pages with two-sentence summaries and structured metadata, then validate fields and source IDs.
-3. Encode queries with `query: ` and pages with `passage: ` using
-   `intfloat/multilingual-e5-small` (384 dimensions). Normalize vectors for cosine similarity.
+3. Encode pages with `passage: ` using `intfloat/multilingual-e5-small` (384 dimensions), then
+   store normalized vectors with the title and summary. Query encoding follows in the search step.
 4. Retrieve lexical and vector candidates through one of two interchangeable backends:
    Elasticsearch BM25 plus vector search, or `rank_bm25` plus NumPy cosine similarity.
 5. Fuse the two ranked lists with shared Python reciprocal rank fusion (RRF).
@@ -46,6 +46,6 @@ and cached local model files. Download model weights and prepare embeddings befo
 Do not substitute random or hash vectors for the required E5 embeddings.
 Select a small local generation model and pin dependencies when implementing those features.
 
-Dependencies are installed during setup, but no models are downloaded in this step.
+The setup tests do not download a model. The first real indexing run downloads the E5 model unless it is cached locally.
 The optional Elasticsearch container now uses a 30-day trial to enable the built-in RRF retriever.
 The later offline implementation will provide Python RRF without depending on this trial.

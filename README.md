@@ -3,15 +3,16 @@
 A laptop prototype over original, fictional Dutch bank help pages.
 Python 3.10+, Docker, and local models; no paid cloud services.
 
-## Current step: setup
+## Current step: indexing
 
-The repository contains the requested dependencies, environment-based configuration,
-an offline-aware connection checker, a single-node Elasticsearch trial configuration,
-and CI checks. Search, generation, personalisation, evaluation, the dashboard,
-monitoring, and the Java example are planned for later steps.
+The repository now indexes the fictional corpus into Elasticsearch or a pure-Python offline fallback.
+Search, generation, personalisation, evaluation, the dashboard, monitoring, and the Java example are
+planned for later steps.
 
 The committed enrichment cache now supplies deterministic two-sentence summaries and controlled
 metadata for all pages. See [the enrichment guide](docs/enrichment.md).
+
+See [the indexing guide](docs/indexing.md) to build the Dutch BM25 and vector indexes.
 
 ## Quick start
 
@@ -82,6 +83,7 @@ scripts/check_setup.py    Version, licence, and connection check
 notebooks/                Future exploration and evaluation walkthroughs
 tests/                    Automated setup and CLI checks
 docs/                     Setup guide and architecture plan
+docs/indexing.md          Elasticsearch and offline indexing guide
 java/                     Future small Java client example
 .github/workflows/        Continuous integration
 compose.yaml              Optional single-node Elasticsearch with a trial licence
