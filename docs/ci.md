@@ -2,7 +2,8 @@
 
 Every push and pull request runs `pytest` with `USE_OFFLINE=true`. This means CI exercises the
 same Elasticsearch-free `rank_bm25` and NumPy path used by the interview fallback; it does not
-start Docker or depend on an Elasticsearch licence.
+start Docker or depend on an Elasticsearch licence. The same workflow also compiles the
+dependency-free Java example with Java 17.
 
 The workflow restores a cache of the public `intfloat/multilingual-e5-small` model. When the cache
 is empty, it downloads the model once, then switches `HF_HUB_OFFLINE=true` before the test run.

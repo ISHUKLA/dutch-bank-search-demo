@@ -10,6 +10,7 @@
 - A 25-query benchmark with RR, AP, linear-gain nDCG@10, Recall@10, query-type slices, and hybrid failure review.
 - A self-contained Product Owner report that presents comparison data and plain-language recommendations.
 - A model card describing purpose, data, limitations, privacy prompts, and monitoring thresholds.
+- A dependency-free Java 11+ client that sends the live Elasticsearch RRF request.
 
 The backend flag selects the implemented search backend. The Elasticsearch hybrid request uses
 the RRF retriever; if the node does not support it, the client computes the same RRF formula.
@@ -43,7 +44,7 @@ Do not promise identical scores across backends.
 - Use synthetic segments without inferring sensitive personal characteristics.
 - Measure latency, empty results, backend errors, and fallback use. Avoid storing raw query text by default.
 - Add focused CI checks for ranking, fusion, evaluation, and backend behaviour when those features are implemented.
-- Add a small Java client example and a 15-minute demo script in later steps.
+- Add a 15-minute demo script in a later step.
 
 ## Laptop and offline operation
 

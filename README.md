@@ -3,13 +3,14 @@
 A laptop prototype over original, fictional Dutch bank help pages.
 Python 3.10+, Docker, and local models; no paid cloud services.
 
-## Current step: continuous integration
+## Current step: Java client
 
 The repository now retrieves the fictional corpus through BM25, E5 vector search, hybrid
 reciprocal-rank fusion (RRF), and an auditable private/business audience adjustment. It also
 evaluates all four methods and turns the saved metrics into a portable Product Owner HTML report.
-Every push also runs the offline test suite and a real relevance-regression check. Generation,
-monitoring, and the Java example are planned for later steps.
+Every push also runs the offline test suite and a real relevance-regression check. A Java 11+
+client mirrors the Elasticsearch hybrid request using only the JDK. Generation and monitoring are
+planned for later steps.
 
 The committed enrichment cache now supplies deterministic two-sentence summaries and controlled
 metadata for all pages. See [the enrichment guide](docs/enrichment.md).
@@ -21,6 +22,7 @@ See [the evaluation guide](docs/evaluation.md) to reproduce the metrics and Elas
 See [the dashboard guide](docs/dashboard.md) to create the standalone Product Owner report.
 See [the model card](docs/model_card.md) for governance, privacy, risks, and monitoring controls.
 See [the CI guide](docs/ci.md) for the offline test and relevance gate.
+See [the Java example](java/README.md) for the dependency-free Elasticsearch client.
 
 ## Quick start
 
@@ -101,7 +103,7 @@ results/report.html       Self-contained Product Owner dashboard
 docs/dashboard.md         Product Owner dashboard guide
 docs/model_card.md        Governance, privacy, risks, and monitoring plan
 docs/ci.md                Offline CI and relevance-regression guard
-java/                     Future small Java client example
+java/                     Dependency-free Java 11+ RRF client and read-aloud guide
 .github/workflows/        Continuous integration
 compose.yaml              Optional single-node Elasticsearch with a trial licence
 requirements.txt          Pinned direct dependencies and Intel Mac compatibility
