@@ -5,7 +5,7 @@
 - An installable Python package and pinned setup dependencies in `requirements.txt`.
 - Shared environment settings in `src/config.py`, including `USE_OFFLINE`.
 - An optional local Elasticsearch trial container and a version/licence checker.
-- CI setup tests, plus a real Elasticsearch connection check.
+- Offline CI with metric unit tests and a real hybrid relevance-regression check.
 - BM25, E5 vector search, hybrid RRF, and explicit audience-based reranking with Elasticsearch and pure-Python paths.
 - A 25-query benchmark with RR, AP, linear-gain nDCG@10, Recall@10, query-type slices, and hybrid failure review.
 - A self-contained Product Owner report that presents comparison data and plain-language recommendations.

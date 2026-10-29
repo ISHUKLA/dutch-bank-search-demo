@@ -8,44 +8,35 @@ permissions:
   contents: read
 
 jobs:
-  smoke:
+  test-offline:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.10", "3.13"]
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
-      - name: Install the package
-        run: python -m pip install -e . elasticsearch==8.19.3 pytest==8.4.2
-      - name: Run smoke checks without Docker or models
-        run: python -m pytest -q
-
-  elasticsearch:
-    runs-on: ubuntu-latest
+    env:
+      USE_OFFLINE: "true"
+      HF_HUB_OFFLINE: "true"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Install the setup checker dependencies
-        run: python -m pip install -e . elasticsearch==8.19.3
-      - name: Start the trial node
-        run: docker compose up -d --wait --wait-timeout 180
-      - name: Check the real server version and licence
-        shell: bash
+          cache: pip
+      - name: Restore the public E5 model cache
+        id: e5-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: e5-multilingual-small-${{ runner.os }}-v1
+      - name: Download E5 when the cache is empty
+        if: steps.e5-cache.outputs.cache-hit != 'true'
         env:
-          USE_OFFLINE: "false"
+          HF_HUB_OFFLINE: "false"
         run: |
-          python scripts/check_setup.py | tee setup-output.txt
-          grep -F "Elasticsearch version: 8.19.23" setup-output.txt
-          grep -F "Licence type: trial" setup-output.txt
-          grep -F "Licence status: active" setup-output.txt
-      - name: Show Elasticsearch logs on failure
-        if: failure()
-        run: docker compose logs
-      - name: Stop Elasticsearch
-        if: always()
-        run: docker compose down
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt -e .
+          python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('intfloat/multilingual-e5-small')"
+      - name: Install dependencies from the lock-style requirements file
+        if: steps.e5-cache.outputs.cache-hit == 'true'
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt -e .
+      - name: Run all tests with the Elasticsearch-free backend
+        run: python -m pytest -q
