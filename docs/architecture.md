@@ -7,6 +7,7 @@
 - An optional local Elasticsearch trial container and a version/licence checker.
 - CI setup tests, plus a real Elasticsearch connection check.
 - BM25, E5 vector search, hybrid RRF, and explicit audience-based reranking with Elasticsearch and pure-Python paths.
+- A 25-query benchmark with RR, AP, linear-gain nDCG@10, Recall@10, query-type slices, and hybrid failure review.
 
 The backend flag selects the implemented search backend. The Elasticsearch hybrid request uses
 the RRF retriever; if the node does not support it, the client computes the same RRF formula.
@@ -30,7 +31,7 @@ Each Elasticsearch feature must have an offline equivalent before it is added to
 BM25 analyzers and approximate vector retrieval can produce different rankings; evaluate these differences.
 Do not promise identical scores across backends.
 
-## Evaluation, governance, and monitoring: planned
+## Evaluation, governance, and monitoring
 
 - Evaluate BM25, vector, hybrid, and personalised runs using nDCG@10, MAP, MRR, and Recall@k.
 - Document relevance grades, binary thresholds, cutoff conventions, and handling of queries with no relevant pages.

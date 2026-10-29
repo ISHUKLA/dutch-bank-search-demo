@@ -18,8 +18,13 @@ Each query has one of three task types:
 - `informational`: the user wants an explanation or policy;
 - `transactional`: the user wants to perform or fix an action.
 
+Each query also declares a synthetic `segment`: `private` for retail scenarios and
+`business` for the three explicitly business scenarios. It is a supplied test condition for
+personalisation evaluation, not an inference made from user behaviour or query text.
+
 Judgments use a 0–3 graded relevance scale: `3` is the direct answer page, `2` is a useful closely
 related page or prerequisite, `1` is weak context or a plausible near-duplicate, and `0` is explicitly
-non-relevant. Pages omitted from a query's `judgments` map are unjudged and should be treated as unknown
-when computing evaluation metrics. This keeps the labels small enough to explain in an interview while
+non-relevant. Pages omitted from a query's `judgments` map are unjudged. The evaluator treats a returned
+unjudged page as grade 0, matching Elasticsearch `_rank_eval` with its default label handling. This keeps
+the labels small enough to explain in an interview while
 still making the ranking problem non-trivial.
