@@ -2,29 +2,23 @@
 
 import argparse
 
-from bank_search.config import (
-    BACKENDS,
-    DEFAULT_BACKEND,
-    EMBEDDING_DIMENSIONS,
-    EMBEDDING_MODEL,
-)
+from bank_search.config import EMBEDDING_DIMENSIONS, EMBEDDING_MODEL
 
 
-def main() -> None:
+def main() -> int:
     parser = argparse.ArgumentParser(description="Fictional Dutch bank search demo scaffold")
-    parser.add_argument(
-        "--backend",
-        choices=BACKENDS,
-        default=DEFAULT_BACKEND,
-        help="Select the planned search backend (default: offline).",
-    )
-    args = parser.parse_args()
+    parser.parse_args()
+    try:
+        import config
+    except ValueError as error:
+        parser.error(str(error))
 
     print("Scaffold ready")
-    print(f"Backend: {args.backend}")
+    print(f"Backend: {'offline' if config.USE_OFFLINE else 'elasticsearch'}")
     print(f"Embedding model: {EMBEDDING_MODEL} ({EMBEDDING_DIMENSIONS} dimensions)")
     print("Search implementation: pending")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

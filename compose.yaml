@@ -4,7 +4,7 @@ services:
     environment:
       discovery.type: single-node
       xpack.security.enabled: "false"
-      xpack.license.self_generated.type: basic
+      xpack.license.self_generated.type: trial
       xpack.ml.enabled: "false"
       node.store.allow_mmap: "false"
       ES_JAVA_OPTS: "-Xms512m -Xmx512m"

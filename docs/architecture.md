@@ -2,9 +2,10 @@
 
 ## Implemented in this step
 
-- An installable Python package with no runtime dependencies.
-- A command that selects and prints a backend using `--backend offline|elasticsearch`.
-- An optional local Elasticsearch container and CI smoke checks.
+- An installable Python package and pinned setup dependencies in `requirements.txt`.
+- Shared environment settings in `src/config.py`, including `USE_OFFLINE`.
+- An optional local Elasticsearch trial container and a version/licence checker.
+- CI setup tests, plus a real Elasticsearch connection check.
 
 The backend flag is configuration only at this stage. Neither search backend exists yet.
 
@@ -45,6 +46,6 @@ and cached local model files. Download model weights and prepare embeddings befo
 Do not substitute random or hash vectors for the required E5 embeddings.
 Select a small local generation model and pin dependencies when implementing those features.
 
-Heavy libraries are intentionally absent from the scaffold; the installation and smoke checks need no models.
-The optional Elasticsearch container uses the free Basic license. Shared Python RRF avoids a dependency
-on Elasticsearch's built-in RRF licensing or version-specific retriever syntax.
+Dependencies are installed during setup, but no models are downloaded in this step.
+The optional Elasticsearch container now uses a 30-day trial to enable the built-in RRF retriever.
+The later offline implementation will provide Python RRF without depending on this trial.

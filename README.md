@@ -1,88 +1,89 @@
 # Dutch Bank Search Demo
 
-A small interview prototype for hybrid search over original, fictional Dutch bank help pages.
+A laptop prototype over original, fictional Dutch bank help pages.
 Python 3.10+, Docker, and local models; no paid cloud services.
 
-## Current step: scaffold
+## Current step: setup
 
-The package, backend selector, Docker configuration, documentation, and CI smoke checks are ready.
-The command prints configuration only. Search, embeddings, LLM generation, personalisation,
-evaluation, the dashboard, monitoring, and the Java example will be added in later steps.
+The repository contains the requested dependencies, environment-based configuration,
+an offline-aware connection checker, a single-node Elasticsearch trial configuration,
+and CI checks. Search, generation, personalisation, evaluation, the dashboard,
+monitoring, and the Java example are planned for later steps.
 
-## Run the scaffold
+## Quick start
 
-From a terminal with Python 3.10 or newer:
+Use Python 3.11 for the broadest laptop compatibility. On Intel Macs, use Python 3.10–3.12;
+the PyTorch wheels needed by this stack are unavailable for Python 3.13 on that platform.
 
 ```bash
 git clone https://github.com/ISHUKLA/dutch-bank-search-demo.git
 cd dutch-bank-search-demo
-python3 -m venv .venv
+python3.11 -m venv .venv
 source .venv/bin/activate
-python -m pip install -e .
-python -m bank_search --backend offline
-python -m unittest discover -s tests -v
+python -m pip install -r requirements.txt -e .
+USE_OFFLINE=true python scripts/check_setup.py
+python -m pytest -q
 ```
 
-The repository is private, so cloning requires your GitHub credentials.
-On Windows PowerShell, activate with `.venv\Scripts\Activate.ps1`.
-
-Expected command output:
+Expected checker output:
 
 ```text
-Scaffold ready
-Backend: offline
-Embedding model: intfloat/multilingual-e5-small (384 dimensions)
-Search implementation: pending
+Mode: offline
+Elasticsearch check: skipped
 ```
 
-The tests finish with `Ran 3 tests` and `OK`.
-The scaffold needs no Docker service, model download, or API key to run.
-Initial package installation requires the Python build tools; the installed scaffold runs offline.
+The checker does not import Elasticsearch or make network requests in offline mode.
+This step does not download embedding or generation models. Installing dependencies needs internet access.
 
-One flag selects the future search backend:
+## Check local Elasticsearch
 
-```bash
-python -m bank_search --backend elasticsearch
-```
-
-For now this changes only the printed backend. It does not make a network connection.
-The default when the flag is omitted is `offline`.
-
-## Optional: start Elasticsearch
-
-Install and start Docker with Compose support, then run:
+Start Docker, then run:
 
 ```bash
 docker compose up -d --wait
-curl --fail http://localhost:9200
+USE_OFFLINE=false python scripts/check_setup.py
 ```
 
-Success means the service becomes healthy and the JSON response contains version `8.19.23`.
-The container has a 2 GB memory limit and a 512 MB Java heap. Allow at least 4 GB for Docker.
-Authentication is disabled for this local fictional-data demo, with the port bound to `127.0.0.1`.
-The free Basic license is selected explicitly. This configuration is for local development.
-The first Docker image pull needs internet access.
+Expected output for a fresh data volume:
 
-```bash
-docker compose down
+```text
+Mode: elasticsearch
+Elasticsearch version: 8.19.23
+Licence type: trial
+Licence status: active
+Elasticsearch check: OK
 ```
 
-Stopping the container preserves its data volume.
-Image reference: [official Elastic image, 8.19.23](https://www.docker.elastic.co/r/elasticsearch/elasticsearch:8.19.23).
-Setup reference: [Elastic Docker documentation](https://www.elastic.co/guide/en/elasticsearch/reference/8.19/docker.html).
+The 30-day trial enables Elasticsearch's RRF retriever. The service is bound to localhost,
+with authentication disabled for this local fictional-data demo.
+An existing volume may retain the previous Basic licence: follow the non-destructive activation
+instructions in [docs/setup.md](docs/setup.md).
+
+The setup guide includes the complete `docker run` alternative, Elastic's `start-local` option,
+credential configuration, expected output, and troubleshooting.
+
+## One backend switch
+
+`USE_OFFLINE=true` selects offline mode; `USE_OFFLINE=false` selects Elasticsearch.
+The default is `true`. This replaces the initial scaffold's `--backend` argument.
+Both the setup checker and `python -m bank_search` read the same `src/config.py` settings.
+The package command still reports configuration only; neither search backend is implemented yet.
 
 ## Layout
 
 ```text
 data/                     Fictional Dutch pages, queries, and relevance labels
-src/bank_search/           Python package and command-line entry point
+src/config.py             Environment settings and USE_OFFLINE
+src/bank_search/           Python package and E5 embedding constants
+scripts/check_setup.py    Version, licence, and connection check
 notebooks/                Future exploration and evaluation walkthroughs
-tests/                    Automated checks
-docs/                     Architecture and future demo/governance notes
+tests/                    Automated setup and CLI checks
+docs/                     Setup guide and architecture plan
 java/                     Future small Java client example
 .github/workflows/        Continuous integration
-compose.yaml              Optional local Elasticsearch service
-pyproject.toml            Python package configuration
+compose.yaml              Optional single-node Elasticsearch with a trial licence
+requirements.txt          Pinned direct dependencies and Intel Mac compatibility
+pyproject.toml            Lightweight package installation
 ```
 
 ## Working agreements
@@ -90,14 +91,15 @@ pyproject.toml            Python package configuration
 - Use fictional data only: no real bank names, branding, copied pages, or customer records.
 - Keep page content and search queries in Dutch; code and comments in English.
 - Use `intfloat/multilingual-e5-small`, 384 dimensions, with `query: ` and `passage: ` prefixes.
-- Provide each Elasticsearch search capability through the same offline interface using `rank_bm25` and NumPy.
-- Cache model files and document embeddings before the interview so the later offline demo needs no network.
-- Add one requested step at a time, using complete, readable files.
+- Implement every Elasticsearch search feature offline with `rank_bm25` and NumPy in later steps.
+- Cache model files and document embeddings before the interview so the offline demo needs no network.
+- Keep credentials in environment variables. `.env` and `elastic-start-local/` are ignored by Git.
+- Add only the requested step, with complete and readable files.
 
 See [the architecture plan](docs/architecture.md) for the remaining features.
 
 ## Interview talking points
 
-- "I separate reusable Python code, fictional data, evaluation, and presentation so each part is easy to explain."
-- "The backend defaults to offline; the shared interface will let me demonstrate the same pipeline without Elasticsearch."
-- "CI starts with a clean installation and checks the command-line contract before more features are added."
+- "I pin the client to the server's major version and check the live licence before relying on RRF."
+- "Credentials come from the environment, and one flag gives the demo an explicit offline path."
+- "The setup check fails quickly and CI tests the failure paths without downloading a model."

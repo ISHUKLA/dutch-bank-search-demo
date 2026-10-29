@@ -18,3 +18,5 @@ artifacts/
 logs/
 *.log
 *.class
+elastic-start-local/
+error-start-local.log
