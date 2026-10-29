@@ -6,8 +6,10 @@
 - Shared environment settings in `src/config.py`, including `USE_OFFLINE`.
 - An optional local Elasticsearch trial container and a version/licence checker.
 - CI setup tests, plus a real Elasticsearch connection check.
+- BM25, E5 vector search, and hybrid RRF with Elasticsearch and pure-Python paths.
 
-The backend flag is configuration only at this stage. Neither search backend exists yet.
+The backend flag selects the implemented search backend. The Elasticsearch hybrid request uses
+the RRF retriever; if the node does not support it, the client computes the same RRF formula.
 
 ## Planned pipeline
 
@@ -17,7 +19,7 @@ The backend flag is configuration only at this stage. Neither search backend exi
    store normalized vectors with the title and summary. Query encoding follows in the search step.
 4. Retrieve lexical and vector candidates through one of two interchangeable backends:
    Elasticsearch BM25 plus vector search, or `rank_bm25` plus NumPy cosine similarity.
-5. Fuse the two ranked lists with shared Python reciprocal rank fusion (RRF).
+5. Fuse the two ranked lists with Elasticsearch RRF or the equivalent shared Python reciprocal rank fusion (RRF).
 6. Apply a transparent segment adjustment chosen explicitly by the demo user.
 7. Generate a local LLM answer grounded in retrieved pages, showing sources and handling missing evidence.
 8. Display results, scores, timings, segment controls, and evaluation results in a small Python dashboard.
@@ -47,5 +49,5 @@ Do not substitute random or hash vectors for the required E5 embeddings.
 Select a small local generation model and pin dependencies when implementing those features.
 
 The setup tests do not download a model. The first real indexing run downloads the E5 model unless it is cached locally.
-The optional Elasticsearch container now uses a 30-day trial to enable the built-in RRF retriever.
-The later offline implementation will provide Python RRF without depending on this trial.
+The optional Elasticsearch container uses a 30-day trial to enable the built-in RRF retriever.
+The offline implementation provides Python RRF without depending on this trial.

@@ -3,16 +3,17 @@
 A laptop prototype over original, fictional Dutch bank help pages.
 Python 3.10+, Docker, and local models; no paid cloud services.
 
-## Current step: indexing
+## Current step: search
 
-The repository now indexes the fictional corpus into Elasticsearch or a pure-Python offline fallback.
-Search, generation, personalisation, evaluation, the dashboard, monitoring, and the Java example are
-planned for later steps.
+The repository now retrieves the fictional corpus through BM25, E5 vector search, and hybrid
+reciprocal-rank fusion (RRF), in Elasticsearch or a pure-Python offline fallback. Generation,
+personalisation, evaluation, the dashboard, monitoring, and the Java example are planned for later steps.
 
 The committed enrichment cache now supplies deterministic two-sentence summaries and controlled
 metadata for all pages. See [the enrichment guide](docs/enrichment.md).
 
 See [the indexing guide](docs/indexing.md) to build the Dutch BM25 and vector indexes.
+See [the search guide](docs/search.md) to compare lexical, vector, and hybrid results.
 
 ## Quick start
 
@@ -70,8 +71,8 @@ credential configuration, expected output, and troubleshooting.
 
 `USE_OFFLINE=true` selects offline mode; `USE_OFFLINE=false` selects Elasticsearch.
 The default is `true`. This replaces the initial scaffold's `--backend` argument.
-Both the setup checker and `python -m bank_search` read the same `src/config.py` settings.
-The package command still reports configuration only; neither search backend is implemented yet.
+Both the setup checker and search script read the same `src/config.py` settings. Run
+`USE_OFFLINE=true python src/search.py --query "pas kwijt"` for the portable demo.
 
 ## Layout
 
@@ -84,6 +85,7 @@ notebooks/                Future exploration and evaluation walkthroughs
 tests/                    Automated setup and CLI checks
 docs/                     Setup guide and architecture plan
 docs/indexing.md          Elasticsearch and offline indexing guide
+docs/search.md            BM25, vector, RRF, fallback, and explain guide
 java/                     Future small Java client example
 .github/workflows/        Continuous integration
 compose.yaml              Optional single-node Elasticsearch with a trial licence
@@ -96,7 +98,7 @@ pyproject.toml            Lightweight package installation
 - Use fictional data only: no real bank names, branding, copied pages, or customer records.
 - Keep page content and search queries in Dutch; code and comments in English.
 - Use `intfloat/multilingual-e5-small`, 384 dimensions, with `query: ` and `passage: ` prefixes.
-- Implement every Elasticsearch search feature offline with `rank_bm25` and NumPy in later steps.
+- Every Elasticsearch search feature has an offline equivalent using `rank_bm25` and NumPy.
 - Cache model files and document embeddings before the interview so the offline demo needs no network.
 - Keep credentials in environment variables. `.env` and `elastic-start-local/` are ignored by Git.
 - Add only the requested step, with complete and readable files.
