@@ -17,14 +17,7 @@ the RRF retriever; if the node does not support it, the client computes the same
 
 ## End-to-end flow
 
-~~~mermaid
-flowchart LR
-    A[Fictional Dutch help content] --> B[LLM enrichment<br/>summary and controlled metadata]
-    B --> C[Index<br/>Dutch BM25 + E5 vectors]
-    C --> D[Hybrid search<br/>BM25 + kNN + RRF]
-    D --> E[Evaluation<br/>RR, AP, nDCG, Recall]
-    E --> F[Monitoring<br/>quality, latency, freshness, fairness]
-~~~
+![Architecture diagram: fictional content through enrichment, indexing, hybrid search, evaluation, and monitoring](architecture.svg)
 
 The optional private/business adjustment happens after hybrid retrieval and is included in the
 evaluation and monitoring slices. A future extension may add local, source-grounded answer
