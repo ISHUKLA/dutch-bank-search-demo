@@ -7,6 +7,18 @@ Python 3.10+, Docker, and local models; no paid cloud services.
 
 ![Architecture diagram: content flows through enrichment, indexing, hybrid search, evaluation, and monitoring](docs/architecture.svg)
 
+## Example hybrid evaluation
+
+Offline results for the fictional corpus:
+
+| Metric | Result | Theoretical definition in words | Practical definition |
+|---|---:|---|---|
+| nDCG@10 | **0.797** | Compares the ranking's position-discounted relevance score with the best score possible for those same relevance grades. | How well the top 10 results are ordered by relevance. |
+| Recall@100 | **1.000** | Counts how many relevant pages were retrieved, then divides by the total number of relevant pages for the query. | The share of judged-relevant pages found in the top 100. |
+| MRR, navigational | **0.583** | For each navigational query, takes the inverse of the first relevant result's position, then averages those values; a query with no relevant result contributes zero. | How high the first relevant result appears, averaged across navigational queries. |
+
+Recall@100 is 100% because the 40-page corpus fits within the cutoff. Navigational MRR is based on only two queries. See [the saved evaluation results](results/metrics.json).
+
 ## Current step: final assembly
 
 The repository now retrieves the fictional corpus through BM25, E5 vector search, hybrid
