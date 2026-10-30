@@ -139,9 +139,3 @@ See [the architecture plan](docs/architecture.md) for the remaining features.
    fallback use, freshness, and human feedback—without storing raw queries by default.
 3. **Content quality loop:** expand judged queries, run live Elasticsearch rank evaluation,
    add content-owner review dates, and assess search quality separately for explicit segments.
-
-## Interview talking points
-
-- "I pin the client to the server's major version and check the live licence before relying on RRF."
-- "Credentials come from the environment, and one flag gives the demo an explicit offline path."
-- "The setup check fails quickly and CI tests the failure paths without downloading a model."
