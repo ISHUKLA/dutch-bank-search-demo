@@ -3,6 +3,10 @@
 A laptop prototype over original, fictional Dutch bank help pages.
 Python 3.10+, Docker, and local models; no paid cloud services.
 
+## Architecture
+
+![Architecture diagram: content flows through enrichment, indexing, hybrid search, evaluation, and monitoring](docs/architecture.svg)
+
 ## Current step: final assembly
 
 The repository now retrieves the fictional corpus through BM25, E5 vector search, hybrid
