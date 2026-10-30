@@ -165,8 +165,3 @@ docker compose down
 - **Elasticsearch connection error:** confirm Docker is running, then use `docker compose up -d --wait`,
   or use `USE_OFFLINE=true` for the no-Docker demo.
 
-## Interview talking points
-
-- “I start offline so the core walkthrough is repeatable and does not depend on a running service.”
-- “The same command-line flow can switch to Elasticsearch when I want to demonstrate its RRF retriever.”
-- “Evaluation writes a versionable JSON artifact, and the dashboard reads that artifact rather than recomputing scores.”
