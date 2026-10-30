@@ -42,7 +42,7 @@ See [the Java example](java/README.md) for the dependency-free Elasticsearch cli
 See the [step-by-step run guide](docs/run_demo.md) for the laptop commands and expected output.
 
 ## Setup in 3 commands
-
+ 
 Use Python 3.11 for the broadest laptop compatibility. On Intel Macs, use Python 3.10–3.12;
 the PyTorch wheels needed by this stack are unavailable for Python 3.13 on that platform.
 
