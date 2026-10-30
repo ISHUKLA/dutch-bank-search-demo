@@ -40,6 +40,7 @@ See [the model card](docs/model_card.md) for governance, privacy, risks, and mon
 See [the CI guide](docs/ci.md) for the offline test and relevance gate.
 See [the Java example](java/README.md) for the dependency-free Elasticsearch client.
 See [the timed demo script](docs/demo_script.md) for the 15-minute interview flow and hard questions.
+See the [step-by-step run guide](docs/run_demo.md) for the laptop commands and expected output.
 
 ## Setup in 3 commands
 
