@@ -25,8 +25,8 @@ The repository now retrieves the fictional corpus through BM25, E5 vector search
 reciprocal-rank fusion (RRF), and an auditable private/business audience adjustment. It also
 evaluates all four methods and turns the saved metrics into a portable Product Owner HTML report.
 Every push also runs the offline test suite and a real relevance-regression check. A Java 11+
-client mirrors the Elasticsearch hybrid request using only the JDK. The notebook and timed demo
-script assemble the full interview walkthrough. Source-grounded answer generation is a future extension.
+client mirrors the Elasticsearch hybrid request using only the JDK. The notebook assembles the
+interview walkthrough. Source-grounded answer generation is a future extension.
 
 The committed enrichment cache now supplies deterministic two-sentence summaries and controlled
 metadata for all pages. See [the enrichment guide](docs/enrichment.md).
@@ -39,7 +39,6 @@ See [the dashboard guide](docs/dashboard.md) to create the standalone Product Ow
 See [the model card](docs/model_card.md) for governance, privacy, risks, and monitoring controls.
 See [the CI guide](docs/ci.md) for the offline test and relevance gate.
 See [the Java example](java/README.md) for the dependency-free Elasticsearch client.
-See [the timed demo script](docs/demo_script.md) for the 15-minute interview flow and hard questions.
 See the [step-by-step run guide](docs/run_demo.md) for the laptop commands and expected output.
 
 ## Setup in 3 commands
@@ -111,7 +110,7 @@ data/                     Fictional Dutch help pages, labels, and enrichment cac
 src/                      Enrichment, indexing, search, metrics, evaluation, and report code
 notebooks/walkthrough.ipynb  Fast, ordered interview walkthrough
 results/                  Saved benchmark JSON and standalone Product Owner report
-docs/                     Setup, architecture, governance, CI, and demo script
+docs/                     Setup, architecture, governance, and CI
 tests/                    Unit, retrieval, relevance-regression, and report tests
 java/                     Dependency-free Java 11+ RRF client and read-aloud guide
 .github/workflows/        Offline pytest and Java compilation on every push
